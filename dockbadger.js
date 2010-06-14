@@ -1,7 +1,5 @@
 /*
   DockBadger.
-  Requires jQuery (tested on 1.4.1, but no new features used).
-
   Copyright 2010 MyFreeWeb
   
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,27 +14,26 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 */
-(function($){  
-    $.dockBadger = {
-	init: function() {
-	    window.original_title = document.title;
-	    return $.dockBadger;
-	},
-	set: function(number) {
-	    if (number == 0) {
-		number = '';
-		document.title = window.original_title;
+dockBadger = {
+    init: function() {
+	window.original_title = document.title;
+	return dockBadger;
+    },
+    set: function(number) {
+	if (number == 0) {
+	    number = '';
+	    document.title = window.original_title;
+	}
+	else {
+	    if (typeof(window.fluid) != 'undefined') {
+		window.fluid.dockBadge = number;
+	    }
+	    else if (typeof(window.platform.icon) != 'undefined') {
+		window.platform.icon().badgeText = number;
 	    }
 	    else {
-		if (typeof(window.fluid) != 'undefined') {
-		    window.fluid.dockBadge = number;
-		}
-		else if (typeof(window.platform.icon) != 'undefined') {
-		    window.platform.icon().badgeText = number;
-		}
-		else {
-		    document.title = '(' + number + ') ' + window.orig_title;
-		}	
-	    }
+		document.title = '(' + number + ') ' + window.orig_title;
+	    }	
 	}
-})(jQuery);
+    }
+}
