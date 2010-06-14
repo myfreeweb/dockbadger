@@ -14,7 +14,7 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 */
-dockBadger = {
+window.dockBadger = {
     init: function() {
 	window.original_title = document.title;
 	return dockBadger;
@@ -28,11 +28,11 @@ dockBadger = {
 	    if (typeof(window.fluid) != 'undefined') {
 		window.fluid.dockBadge = number;
 	    }
-	    else if (typeof(window.platform.icon) != 'undefined') {
+	    else if (typeof(window.platform) != 'undefined') {
 		window.platform.icon().badgeText = number;
 	    }
 	    else {
-		document.title = '(' + number + ') ' + window.orig_title;
+		document.title = '(' + number + ') ' + window.original_title;
 	    }	
 	}
     }
